@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(80, 144, 165);
+  color: white;
+  width: 100%;
+  padding: 1em;
+  font-size: 10px;
+  /*max-width: 20em; remember this for using flexbox for other divs in this assignment*/
+}
