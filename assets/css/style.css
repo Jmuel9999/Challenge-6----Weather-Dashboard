@@ -16,3 +16,30 @@
   font-size: 10px;
   /*max-width: 20em; remember this for using flexbox for other divs in this assignment*/
 }
+
+.searchcontainer h2 {
+  display: block;
+  width: 80%;
+  max-width: 100%;
+}
+
+/*Searchcontainer style start*/
+.searchcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+  max-width: 30em;
+  margin: 0.5em;
+}
+
+.form-input {
+  /*needed block display to make button take up whole width of this container that I wanted*/
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.searchbtn {
+  margin: 0;
+}
