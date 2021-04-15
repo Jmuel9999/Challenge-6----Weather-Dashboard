@@ -4,6 +4,7 @@
   box-sizing: border-box;
 } 
 
+/* header style start */
 .header {
   display: flex;
   flex-wrap: wrap;
@@ -12,9 +13,28 @@
   background-color: rgb(80, 144, 165);
   color: white;
   width: 100%;
-  padding: 1em;
+}
+/* header style end */
+
+/* search form style start */
+.searchinput {
+  font-size: 2rem;
+  padding: 7px;
+  width: 90%;
+  height: 4rem;
+  border-radius: 5px;
 }
 
-.row {
-  border: red 1px dashed;
+#searchBtn {
+  padding: 7px;
+  width: 90%;
+  margin-top: 9px;
 }
+
+.divideline {
+  border: none;
+  width: 90%;
+  height: 2px;
+  background-color: black;
+}
+/* search form style end */
