@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
     <title>Weather Dashboard</title>
   </head>
   <body>
@@ -12,29 +18,22 @@
     <div class="header">
       <h1>Weather Dashboard</h1>
     </div>
-    <div class="searchcontainer">
-      <h2>Search for a City:</h2>
-      <form class="formdiv">
-        <label for="city">
-          <input type="text" placeholder="San Diego" name="city" id="city"/
-          class="form-input">
-        </label>
-      </form>
-      <button type="submit" class="searchbtn">Search</button>
-      <br />
-      <button type="button" class="quickbtn">Austin</button>
-      <button type="button" class="quickbtn">Chicago</button>
-      <button type="button" class="quickbtn">New York</button>
-      <button type="button" class="quickbtn">Orlando</button>
-      <button type="button" class="quickbtn">San Francisco</button>
-      <button type="button" class="quickbtn">Seattle</button>
-      <button type="button" class="quickbtn">Denver</button>
-      <button type="button" class="quickbtn">Atlanta</button>
+    <!--search form-->
+    <div class="col">
+      <div id="searchcontainer" class="col-md-4">
+        <h2>Search for a City:</h2> 
+        <div class="col-md-8">
+          <form>
+            <input type="text">
+          </form>
+        </div>
+      </div>  
     </div>
 
     <div class="weathercontainer"></div>
 
     <div class="forecastcontainer"></div>
+
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
