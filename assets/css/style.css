@@ -4,44 +4,6 @@
   box-sizing: border-box;
 } 
 
-/* header style start */
-.header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  background-color: rgb(80, 144, 165);
-  color: white;
-  width: 100%;
+#header {
+  margin-top: 10px;
 }
-/* header style end */
-
-/* search form style start */
-.searchinput {
-  font-size: 2rem;
-  padding: 7px;
-  width: 90%;
-  height: 4rem;
-  border-radius: 5px;
-}
-
-#searchBtn {
-  padding: 7px;
-  width: 90%;
-  margin-top: 9px;
-}
-
-.divideline {
-  border: none;
-  width: 90%;
-  height: 2px;
-  background-color: black;
-}
-/* search form style end */
-
-/* current weather container style start*/
-#currentWeatherContainer {
-  
-  height: 1rem;
-}
-/* current weather container style end*/

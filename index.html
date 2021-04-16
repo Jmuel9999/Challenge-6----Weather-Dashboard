@@ -9,55 +9,21 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
       integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous"/>
     <title>Weather Dashboard</title>
   </head>
   <body>
-    <!--header bar-->
-    <div class="header">
-      <h1>Weather Dashboard</h1>
+    <div class="container-fluid bg-primary text-white">
+        <h1 id="header" class="text-center">Weather Dashboard</h1>
     </div>
-    <!--search form-->
-    <div class="col">
-      <div id="searchcontainer" class="col-md-4">
-        <h2 class="">Search for a City:</h2> 
-        <div class="col">
-          <form>
-            <input type="text"
-            placeholder="Enter name of city"
-            class="searchinput"
-            id="cityID">
-          </form>
-        </div>
-        <div class="col">
-          <button id="searchBtn" type="submit">Search</button>
-        </div>
-        <hr class="divideline"></hr>
-        <div class="col">
-          <h3>Recent Searches</h3>
-          <p>anything</p>
-          <p>another thing</p>
-        </div>
-      </div>  
-    </div>
-    <!--current day weather div-->
-    <div Id="currentWeatherContainer" class="container">
-      <h3>City and date</h3>
+    <div id="mainContainer" class="container-fluid">
       <div class="row">
-        <div class="col">
-          Temp
-        </div>
-      </div>  
-      <div class="row">
-        <div class="col">
-          wind
-        </div>
-      </div> 
+        <div class="col-sm-3">col-sm-3</div>
+        <div class="col-sm-9">col-sm-9</div>
       </div>
     </div>
-    <div class="forecastcontainer"></div>
-
+    <!--searchContainer-->
+    
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
