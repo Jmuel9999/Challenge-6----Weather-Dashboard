@@ -38,3 +38,10 @@
   background-color: black;
 }
 /* search form style end */
+
+/* current weather container style start*/
+#currentWeatherContainer {
+  
+  height: 1rem;
+}
+/* current weather container style end*/

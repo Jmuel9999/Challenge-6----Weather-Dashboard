@@ -1,9 +1,19 @@
 
+const openWeatherApiKey = `643d2bf23896d3c3a3c726330b6ea84c`
 
+//Fetch function for openweathermap API
+// const getCityWeather = function() {
+//     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=41.883228&lon=-87.632401&exclude=minutely,hourly&appid=${openWeatherApiKey}`)
+//         .then(response => response.json())
+//         .then((data) => {
+//             let temperature = data.current[]
+//         })
+//         console.log("works")
+// }
 
+// getCityWeather();
 
-
-
+// searchBtn.addEventListener("click", getCityWeather);
 
 
 
@@ -12,13 +22,13 @@
 
 // Challenge 6 Weather Dashboard
 //      1 Make sure page loads
-// 2 Create input form
-// -	create id for the input (city id)
-// -	create search button
-// 3 write function to extract the data from the city input
-// 4 “Clean” the data from the city input (take away spacing, meets API requirements)
-// 5 Make AJAX call to API’s url (look at the API’s docs to make the AJAX call)
-// 6 Get data back, parse through the data. 
+//      2 Create input form
+//      -	create id for the input (city id)
+//      -	create search button
+//      3 write function to extract the data from the city input
+//      4 “Clean” the data from the city input (take away spacing, meets API requirements)
+//      5 Make AJAX call to API’s url (look at the API’s docs to make the AJAX call)
+//      6 Get data back, parse through the data. 
 // -	look for dot notation to get what I need
 // 7 **5dayforcastdiv**Create a div on the landing page that is going to hold the data (landing spot for info)
 // -	make special ID for this div
