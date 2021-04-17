@@ -18,7 +18,25 @@
     </div>
     <div id="mainContainer" class="container-fluid">
       <div class="row">
-        <div class="col-sm-3">col-sm-3</div>
+        <div id="searchDivContainer1" class="col-sm-3">
+          <!--searchForm div-->
+          <div id="searchFormDivContainer2">
+            <h2>Search for a City:</h2>
+            <form id="form" class="input-group input-group-lg d-md-table">
+              <input id="cityInput" type="text" class="form-control" placeholder="Name of City" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+            </form>
+            <br />
+            <!--searchButton-->
+            <div class="d-grid col-3">
+              <button class="btn btn-primary" type="button">Search</button>
+            </div>
+          </div>
+          <!--recentHistoryDiv-->
+          <div id="searchHistory">
+            <h3>Search History</h3>
+            <p>here is an example, these will be buttons through JS</p>
+          </div>
+        </div>
         <div class="col-sm-9">col-sm-9</div>
       </div>
     </div>
