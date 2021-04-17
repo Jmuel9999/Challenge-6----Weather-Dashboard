@@ -16,18 +16,18 @@
     <div class="container-fluid bg-primary text-white">
         <h1 id="header" class="text-center">Weather Dashboard</h1>
     </div>
-    <div id="mainContainer" class="container-fluid">
+    <div id="SearchFormAndHistoryContainer" class="container-fluid">
       <div class="row">
-        <div id="searchDivContainer1" class="col-sm-3">
+        <div id="searchFormContainer" class="col-sm-3 container-fluid">
           <!--searchForm div-->
-          <div id="searchFormDivContainer2">
+          <div id="searchInput">
             <h2>Search for a City:</h2>
-            <form id="form" class="input-group input-group-lg d-md-table">
+            <form id="form" class="input-group-lg d-md-table">
               <input id="cityInput" type="text" class="form-control" placeholder="Name of City" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
             </form>
             <br />
             <!--searchButton-->
-            <div class="d-grid col-3">
+            <div class="d-grid gap-2 col-6 mx-auto">
               <button class="btn btn-primary" type="button">Search</button>
             </div>
           </div>
@@ -37,7 +37,34 @@
             <p>here is an example, these will be buttons through JS</p>
           </div>
         </div>
-        <div class="col-sm-9">col-sm-9</div>
+
+
+        <!--currentWeather and forecast container-->
+        <div id="weatherMainContainer1" class="container col-sm-9">
+          <!--cityWeatherContainer-->
+          <div id="selectedCityInfoContainer">
+            <h3 id="selectedCity">Selected City Info</h3>
+            <div id="currentCityDiv">
+              <p>Temp:</p>
+              <p>Wind:</p>
+              <p>Humidity:</p>
+              <p>UV Index:</p>
+            </div>
+          </div>
+          <!--forecastContainer-->
+          <div id="forecastContainer">
+            <h3>5-Day Forecast</h3>
+            <div id="forecastDaysDiv" class="container-fluid">
+              <div class="row">
+                <div class="col-sm-2">Insert modal window with forecast info</div>
+                <div class="col-sm-2">Insert modal window with forecast info</div>
+                <div class="col-sm-2">Insert modal window with forecast info</div>
+                <div class="col-sm-2">Insert modal window with forecast info</div>
+                <div class="col-sm-2">Insert modal window with forecast info</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!--searchContainer-->

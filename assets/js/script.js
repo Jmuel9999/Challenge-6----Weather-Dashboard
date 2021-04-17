@@ -1,5 +1,7 @@
 
 const openWeatherApiKey = `643d2bf23896d3c3a3c726330b6ea84c`
+const currentCity = document.getElementById(`currentCity`)
+const forecastDays = document.getElementById(`forecastDays`)
 
 //Fetch function for openweathermap API
 // const getCityWeather = function() {
