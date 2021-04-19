@@ -13,18 +13,27 @@ const searchBtn = document.getElementById(`searchBtn`)
 
 // Fetch function for openweathermap API
 const getCityWeather = function() {
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=41.883228&lon=-87.632401&exclude=minutely,hourly&appid=${openWeatherApiKey}` + cityInput.value)
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInput.value}&limit=2&appid=${openWeatherApiKey}`)
+        .then(response => response.json())
+        .then((data) => {
+            let geoDataLat = data.name.lat;
+            let geoDataLon = data.name.lon;
+            console.log(geoDataLat, geoDataLon);
+        })
+        //console.log("works");
+    // Weather fetch
+    // fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=41.883228&lon=-87.632401&exclude=minutely,hourly&appid=${openWeatherApiKey}` + cityInput.value)
 //         .then(response => response.json())
 //         .then((data) => {
 //             let temperature = data.current[]
 //         })
 //         .catch(error => console.error(error));
-        console.log("works")
+        // console.log("works")
 }
 
-const showCityWeather = function() {
+// const showCityWeather = function() {
 
-}
+// }
 
 getCityWeather();
 
