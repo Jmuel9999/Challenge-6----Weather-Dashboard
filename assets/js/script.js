@@ -6,24 +6,29 @@ const openWeatherApiKey = `643d2bf23896d3c3a3c726330b6ea84c`
 const currentCityDiv = document.getElementById(`currentCityDiv`)
 const forecastDaysDiv = document.getElementById(`forecastDaysDiv`)
 const selectedCity = document.getElementById(`selectedCity`)
+const cityInput = document.getElementById(`cityInput`)
 
 // Search button variable
 const searchBtn = document.getElementById(`searchBtn`)
 
 // Fetch function for openweathermap API
 const getCityWeather = function() {
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=41.883228&lon=-87.632401&exclude=minutely,hourly&appid=${openWeatherApiKey}`)
-        .then(response => response.json())
-        .then((data) => {
-            let temperature = data.current[]
-        })
-        .catch(error => console.error(error));
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=41.883228&lon=-87.632401&exclude=minutely,hourly&appid=${openWeatherApiKey}` + cityInput.value)
+//         .then(response => response.json())
+//         .then((data) => {
+//             let temperature = data.current[]
+//         })
+//         .catch(error => console.error(error));
         console.log("works")
+}
+
+const showCityWeather = function() {
+
 }
 
 getCityWeather();
 
-// searchBtn.addEventListener("click", getCityWeather);
+searchBtn.addEventListener("click", getCityWeather);
 
 
 
