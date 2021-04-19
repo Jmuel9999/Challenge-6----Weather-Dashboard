@@ -16,8 +16,9 @@ const getCityWeather = function() {
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInput.value}&limit=2&appid=${openWeatherApiKey}`)
         .then(response => response.json())
         .then((data) => {
-            let geoDataLat = data.name.lat;
-            let geoDataLon = data.name.lon;
+            console.log(data, "it works");
+            let geoDataLat = data[0].lat;
+            let geoDataLon = data[0].lon;
             console.log(geoDataLat, geoDataLon);
         })
         //console.log("works");
