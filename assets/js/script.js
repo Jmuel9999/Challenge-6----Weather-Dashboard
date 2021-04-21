@@ -13,6 +13,7 @@ const searchBtn = document.getElementById(`searchBtn`)
 
 // Fetch function for openweathermap API
 const getCityWeather = function() {
+    //debugger;
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInput.value}&limit=1&appid=${openWeatherApiKey}`)
         .then(response => response.json())
         .then((data) => {
@@ -20,12 +21,13 @@ const getCityWeather = function() {
             // Get the lat and long for selectedCity
             let geoDataLat = data[0].lat;
             let geoDataLon = data[0].lon;
+            renderWeather(geoDataLat, geoDataLon);
             //console.log(geoDataLat, geoDataLon);
         })
 }
-const renderWeather = function() {
-    getCityWeather();
-    fetch(`api.openweathermap.org/data/2.5/weather?lat=${geoDataLat}&lon=${geoDataLon}&limit=1&appid=${openWeatherApiKey}`)
+
+const renderWeather = function(param1, param2) {
+    fetch(`api.openweathermap.org/data/2.5/weather?lat=${param1}&lon=${param2}&limit=1&appid=${openWeatherApiKey}`)
         .then((response => response.json))
         .then ((data) => {
              console.log(data)
@@ -48,7 +50,4 @@ const renderWeather = function() {
 
 // }
 
-getCityWeather();
-
 searchBtn.addEventListener("click", getCityWeather);
-searchBtn.addEventListener("click", renderWeather);
