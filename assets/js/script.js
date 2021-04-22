@@ -39,31 +39,33 @@ const renderWeather = function(param1, param2) {
             // Check API return data
             // console.log(data)
             // data.coord from API documentation
-            fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=minutely,hourly,daily,alerts&appid=${openWeatherApiKey}`)
+            fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=minutely,hourly,alerts&appid=${openWeatherApiKey}`)
             .then(res => res.json())
             .then((uvData) => {
-                let cityDate = data.dt
+                let cityDate = data.current.dt
                 let uvIndex = uvData.current.uvi;
-                let curWeatherIcon = data.weather.icon
+                //let curWeatherIcon = data.current.weather.icon
                 let curTemp = data.main.temp;
                 let curWind = data.wind.speed;
                 let curHumidity = data.main.humidity;
-                displayCurWeather(curTemp, curWind, curHumidity ,uvIndex, curWeatherIcon, cityDate);
+                displayCurWeather(curTemp, curWind, curHumidity ,uvIndex, cityDate);
             })
         })
 }
 // Displays current weather
-const displayCurWeather = function(temp, wind, humid, uvi, curIcon, date) {
+const displayCurWeather = function(temp, wind, humid, uvi, date) {
     let title = document.getElementById("title");
     let temperature = document.getElementById("temperature");
     let windspeed = document.getElementById("windspeed");
     let humidity = document.getElementById("humidity");
     let uvI = document.getElementById("uvI");
 
-    title.imgContent = date
+    // Appending the conditions to their rightful divs
+    title.textContent = date
     temperature.textContent = 'Temp: ' + temp + '°F'
     windspeed.textContent = 'Wind: ' + wind + ' MPH'
     humidity.textContent = 'Humidity: ' + humid + '%'
+    // Still need to make the outside change color
     uvI.textContent = 'UV Index: ' + uvi
     
     
