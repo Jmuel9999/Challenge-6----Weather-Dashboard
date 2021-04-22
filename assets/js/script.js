@@ -27,29 +27,20 @@ const getCityWeather = function() {
 }
 
 const renderWeather = function(param1, param2) {
+    // Check to see if the parameters pass through to renderWeather properly
     //console.log(param1, param2);
-    fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${param1}&lon=${param2}&appid=${openWeatherApiKey}`)
-           //api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}       
+    fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${param1}&lon=${param2}&appid=${openWeatherApiKey}`)      
         .then((response => response.json))
         .then ((data) => {
-             console.log(data)
-         //     Grab weather data from the city searched
-         //     let temperature = detailsData[1].temp
-         //     console.log(temperature);
-         })
-        //console.log("works");
-    // Weather fetch
-    // fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=41.883228&lon=-87.632401&exclude=minutely,hourly&appid=${openWeatherApiKey}` + cityInput.value)
-//         .then(response => response.json())
-//         .then((data) => {
-//             let temperature = data.current[]
-//         })
-//         .catch(error => console.error(error));
-        // console.log("works")
+            // Check API return data
+            //console.log(data)
+            for(var temp in data.main){
+                for(var i = 0; i < data.main[temp].length; i++){
+                let currentTemp = data.main[temp][i];
+            }
+          } 
+        })
+        console.log(currentTemp);
 }
-
-// const showCityWeather = function() {
-
-// }
 
 searchBtn.addEventListener("click", getCityWeather);
