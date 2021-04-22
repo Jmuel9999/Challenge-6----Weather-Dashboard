@@ -21,13 +21,15 @@ const getCityWeather = function() {
             // Get the lat and long for selectedCity
             let geoDataLat = data[0].lat;
             let geoDataLon = data[0].lon;
+            // console.log(geoDataLat, geoDataLon);
             renderWeather(geoDataLat, geoDataLon);
-            //console.log(geoDataLat, geoDataLon);
         })
 }
 
 const renderWeather = function(param1, param2) {
-    fetch(`api.openweathermap.org/data/2.5/weather?lat=${param1}&lon=${param2}&limit=1&appid=${openWeatherApiKey}`)
+    //console.log(param1, param2);
+    fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${param1}&lon=${param2}&appid=${openWeatherApiKey}`)
+           //api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}       
         .then((response => response.json))
         .then ((data) => {
              console.log(data)
