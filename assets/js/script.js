@@ -12,7 +12,7 @@ const cityInput = document.getElementById(`cityInput`)
 const searchBtn = document.getElementById(`searchBtn`)
 
 // Fetch function for openweathermap API
-const getCityWeather = function() {
+const getCity = function() {
     //debugger;
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInput.value}&limit=1&appid=${openWeatherApiKey}`)
         .then(response => response.json())
@@ -24,6 +24,7 @@ const getCityWeather = function() {
             // console.log(geoDataLat, geoDataLon);
             renderWeather(geoDataLat, geoDataLon);
             getUV(geoDataLat, geoDataLon);
+            displayCurWeather();
         })
 }
 
@@ -40,7 +41,7 @@ const renderWeather = function(param1, param2) {
             let curTemp = data.main.temp;
             let curWind = data.wind.speed;
             let curHumidity = data.main.humidity;
-            //let uvIndex = data.
+            displayCurWeather(curTemp, curWind, curHumidity);
             //console.log(curWeatherIcon);
         })
 }
@@ -51,8 +52,20 @@ const getUV = function(param1, param2) {
         .then(response => response.json())
         .then((data) => {
             let uvIndex = data.current.uvi;
-            console.log(uvIndex);
+            displayCurWeather(uvIndex);
+            // console.log(uvIndex);
         })
 }
 
-searchBtn.addEventListener("click", getCityWeather);
+// Displays current weather
+const displayCurWeather = function(temp, wind, humid, uvi,) {
+    currentCityDiv.textContent = ``;
+    cityInput.textContent = temp;
+    // console.log(temp);
+    // console.log(wind);
+    // console.log(humid);
+    // console.log(uvi);
+    //console.log(displayCurWeather)
+}
+
+searchBtn.addEventListener("click", getCity);
