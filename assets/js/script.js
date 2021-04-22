@@ -23,24 +23,36 @@ const getCityWeather = function() {
             let geoDataLon = data[0].lon;
             // console.log(geoDataLat, geoDataLon);
             renderWeather(geoDataLat, geoDataLon);
+            getUV(geoDataLat, geoDataLon);
         })
 }
 
+// Pulls the information needed for the current weather of the slected city
 const renderWeather = function(param1, param2) {
     // Check to see if the parameters pass through to renderWeather properly
     //console.log(param1, param2);
     fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${param1}&lon=${param2}&appid=${openWeatherApiKey}`)      
-        .then((response => response.json))
+        .then(response => response.json())
         .then ((data) => {
             // Check API return data
             //console.log(data)
-            for(var temp in data.main){
-                for(var i = 0; i < data.main[temp].length; i++){
-                let currentTemp = data.main[temp][i];
-            }
-          } 
+            let curWeatherIcon = data.weather.icon
+            let curTemp = data.main.temp;
+            let curWind = data.wind.speed;
+            let curHumidity = data.main.humidity;
+            //let uvIndex = data.
+            //console.log(curWeatherIcon);
         })
-        console.log(currentTemp);
+}
+
+// Pulls UV index information from API
+const getUV = function(param1, param2) {
+    fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${param1}&lon=${param2}&exclude=minutely,hourly,daily,alerts&appid=${openWeatherApiKey}`)
+        .then(response => response.json())
+        .then((data) => {
+            let uvIndex = data.current.uvi;
+            console.log(uvIndex);
+        })
 }
 
 searchBtn.addEventListener("click", getCityWeather);
