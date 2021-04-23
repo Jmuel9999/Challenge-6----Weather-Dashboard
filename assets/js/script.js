@@ -44,12 +44,41 @@ const renderWeather = function(param1, param2) {
             fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${openWeatherApiKey}`)
             .then(res => res.json())
             .then((uvData) => {
+                // Get date for forecast days
                 let firstDay = uvData.daily[0].dt
-                // Weather conditions for the forecast days
+                // Weather conditions for first forecast card
                 let firstDayTemp = uvData.daily[0].temp.max;
                 let firstDayWind = uvData.daily[0].wind_speed;
                 let firstDayHumidity = uvData.daily[0].humidity;
-
+                // Weather conditions for day 2 forecast
+                // Get date for forecast days
+                let secondDay = uvData.daily[1].dt
+                // Weather conditions for second forecast card
+                let secondDayTemp = uvData.daily[1].temp.max;
+                let secondDayWind = uvData.daily[1].wind_speed;
+                let secondDayHumidity = uvData.daily[1].humidity;
+                // Weather conditions for day 3 forecast
+                // Get date for forecast days
+                let thirdDay = uvData.daily[2].dt
+                // Weather conditions for third forecast card
+                let thirdDayTemp = uvData.daily[2].temp.max;
+                let thirdDayWind = uvData.daily[2].wind_speed;
+                let thirdDayHumidity = uvData.daily[2].humidity;
+                // Weather conditions for day 4 forecast
+                // Get date for forecast days
+                let fourthDay = uvData.daily[3].dt
+                // Weather conditions for fourth forecast card
+                let fourthDayTemp = uvData.daily[3].temp.max;
+                let fourthDayWind = uvData.daily[3].wind_speed;
+                let fourthDayHumidity = uvData.daily[3].humidity;
+                // Weather conditions for day 5 forecast
+                // Get date for forecast days
+                let fifthDay = uvData.daily[4].dt
+                // Weather conditions for fifth forecast card
+                let fifthDayTemp = uvData.daily[4].temp.max;
+                let fifthDayWind = uvData.daily[4].wind_speed;
+                let fifthDayHumidity = uvData.daily[4].humidity;
+                // Current weather data
                 let cityName = uvData.timezone;
                 let uvIndex = uvData.current.uvi;
                 let curWeatherIcon = uvData.current.weather.id;
@@ -58,7 +87,11 @@ const renderWeather = function(param1, param2) {
                 let curWind = data.wind.speed;
                 let curHumidity = data.main.humidity;
                 displayCurWeather(curTemp, curWind, curHumidity ,uvIndex, curWeatherIcon, cityName);
-                displayForecast(firstDay, firstDayTemp, firstDayWind, firstDayHumidity);
+                displayForecastOne(firstDay, firstDayTemp, firstDayWind, firstDayHumidity);
+                displayForecastTwo(secondDay, secondDayTemp, secondDayWind, secondDayHumidity);
+                displayForecastThree(thirdDay, thirdDayTemp, thirdDayWind, thirdDayHumidity);
+                displayForecastFour(fourthDay, fourthDayTemp, fourthDayWind, fourthDayHumidity);
+                displayForecastFive(fifthDay, fifthDayTemp, fifthDayWind, fifthDayHumidity);
             })
         })
 }
@@ -81,17 +114,6 @@ const displayCurWeather = function(temp, wind, humid, uvi, curWeatherIcon, cityN
     uvI.textContent = 'UV Index: ' + uvi
 }
 
-// Pulls 5 day forecast
-// const forecastFetch = function(){
-//     fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${openWeatherApiKey}`)
-// }
-
-// Displays next 5 days of weather
-const displayForecast = function(){
-    displayForecastOne();
-    console.log(displayForecastOne, 'works')
-}
-
 // First forecast card information
 const displayForecastOne = function(firstDay, firstDayTemp, firstDayWind, firstDayHumidity){
     // Variable definitions for the first card
@@ -108,5 +130,68 @@ const displayForecastOne = function(firstDay, firstDayTemp, firstDayWind, firstD
     dayOneHumidity.textContent = 'Humidity: ' + firstDayHumidity + '%'; 
 }
 
+// Second forecast card information
+const displayForecastTwo = function(secondDay, secondDayTemp, secondDayWind, secondDayHumidity){
+    // Variable definitions for the first card
+    let dayTwo = document.getElementById('dayTwo');
+    let dayTwoTemp = document.getElementById('dayTwoTemp');
+    let dayTwoWind = document.getElementById('dayTwoWind');
+    let dayTwoHumidity = document.getElementById('dayTwoHumidity');
+    let dayOneIcon = document.getElementById('dayTwoIcon');
+    // Appending the forecast day conditions to their divs
+    dayTwo.textContent = secondDay;
+    //dayOneIcon.src = something????
+    dayTwoTemp.textContent = 'Temp: ' + secondDayTemp + '°F';
+    dayTwoWind.textContent = 'Wind: ' + secondDayWind + ' MPH';
+    dayTwoHumidity.textContent = 'Humidity: ' + secondDayHumidity + '%'; 
+}
+
+// Third forecast card information
+const displayForecastThree = function(thirdDay, thirdDayTemp, thirdDayWind, thirdDayHumidity){
+    // Variable definitions for the first card
+    let dayThree = document.getElementById('dayThree');
+    let dayThreeTemp = document.getElementById('dayThreeTemp');
+    let dayThreeWind = document.getElementById('dayThreeWind');
+    let dayThreeHumidity = document.getElementById('dayThreeHumidity');
+    let dayThreeIcon = document.getElementById('dayThreeIcon');
+    // Appending the forecast day conditions to their divs
+    dayThree.textContent = thirdDay;
+    //dayOneIcon.src = something????
+    dayThreeTemp.textContent = 'Temp: ' + thirdDayTemp + '°F';
+    dayThreeWind.textContent = 'Wind: ' + thirdDayWind + ' MPH';
+    dayThreeHumidity.textContent = 'Humidity: ' + thirdDayHumidity + '%'; 
+}
+
+// Fourth forecast card information
+const displayForecastFour = function(fourthDay, fourthDayTemp, fourthDayWind, fourthDayHumidity){
+    // Variable definitions for the first card
+    let dayFour = document.getElementById('dayFour');
+    let dayFourTemp = document.getElementById('dayFourTemp');
+    let dayFourWind = document.getElementById('dayFourWind');
+    let dayFourHumidity = document.getElementById('dayFourHumidity');
+    let dayFourIcon = document.getElementById('dayFourIcon');
+    // Appending the forecast day conditions to their divs
+    dayFour.textContent = fourthDay;
+    //dayOneIcon.src = something????
+    dayFourTemp.textContent = 'Temp: ' + fourthDayTemp + '°F';
+    dayFourWind.textContent = 'Wind: ' + fourthDayWind + ' MPH';
+    dayFourHumidity.textContent = 'Humidity: ' + fourthDayHumidity + '%'; 
+}
+
+// Fifth forecast card information
+const displayForecastFive = function(fifthDay, fifthDayTemp, fifthDayWind, fifthDayHumidity){
+    // Variable definitions for the first card
+    let dayFive = document.getElementById('dayFive');
+    let dayFiveTemp = document.getElementById('dayFiveTemp');
+    let dayFiveWind = document.getElementById('dayFiveWind');
+    let dayFiveHumidity = document.getElementById('dayFiveHumidity');
+    let dayFiveIcon = document.getElementById('dayFiveIcon');
+    // Appending the forecast day conditions to their divs
+    dayFive.textContent = fifthDay;
+    //dayOneIcon.src = something????
+    dayFiveTemp.textContent = 'Temp: ' + fifthDayTemp + '°F';
+    dayFiveWind.textContent = 'Wind: ' + fifthDayWind + ' MPH';
+    dayFiveHumidity.textContent = 'Humidity: ' + fifthDayHumidity + '%'; 
+}
 
 searchBtn.addEventListener("click", getCity);
