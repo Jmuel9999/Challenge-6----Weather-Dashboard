@@ -9,16 +9,20 @@ const selectedCity = document.getElementById(`selectedCity`)
 const cityInput = document.getElementById(`cityInput`)
 const curWeatherDisplay = document.getElementById(`curWeatherDisplay`)
 
+// Define variable to save searches to an array
+let searchArray = [];
+
 // Search button variable
 const searchBtn = document.getElementById(`searchBtn`)
 
 // Fetch function for openweathermap API
 const getCity = function() {
+    storeSearchLocal();
+    showRecentSearch();
     //debugger;
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInput.value}&units=imperial&limit=1&appid=${openWeatherApiKey}`)
         .then(response => response.json())
         .then((data) => {
-            //console.log(data, "it works");
             // Get the lat and long for selectedCity
             let geoDataLat = data[0].lat;
             let geoDataLon = data[0].lon;
@@ -132,7 +136,7 @@ const displayForecastOne = function(firstDay, firstDayTemp, firstDayWind, firstD
 
 // Second forecast card information
 const displayForecastTwo = function(secondDay, secondDayTemp, secondDayWind, secondDayHumidity){
-    // Variable definitions for the first card
+    // Variable definitions for the second card
     let dayTwo = document.getElementById('dayTwo');
     let dayTwoTemp = document.getElementById('dayTwoTemp');
     let dayTwoWind = document.getElementById('dayTwoWind');
@@ -148,7 +152,7 @@ const displayForecastTwo = function(secondDay, secondDayTemp, secondDayWind, sec
 
 // Third forecast card information
 const displayForecastThree = function(thirdDay, thirdDayTemp, thirdDayWind, thirdDayHumidity){
-    // Variable definitions for the first card
+    // Variable definitions for the third card
     let dayThree = document.getElementById('dayThree');
     let dayThreeTemp = document.getElementById('dayThreeTemp');
     let dayThreeWind = document.getElementById('dayThreeWind');
@@ -180,7 +184,7 @@ const displayForecastFour = function(fourthDay, fourthDayTemp, fourthDayWind, fo
 
 // Fifth forecast card information
 const displayForecastFive = function(fifthDay, fifthDayTemp, fifthDayWind, fifthDayHumidity){
-    // Variable definitions for the first card
+    // Variable definitions for the fifth card
     let dayFive = document.getElementById('dayFive');
     let dayFiveTemp = document.getElementById('dayFiveTemp');
     let dayFiveWind = document.getElementById('dayFiveWind');
@@ -193,5 +197,25 @@ const displayForecastFive = function(fifthDay, fifthDayTemp, fifthDayWind, fifth
     dayFiveWind.textContent = 'Wind: ' + fifthDayWind + ' MPH';
     dayFiveHumidity.textContent = 'Humidity: ' + fifthDayHumidity + '%'; 
 }
+
+const storeSearchLocal = function(){
+    // Get value of city typed in by user
+    let searchInput = cityInput.value
+    //console.log(storeSearchLocal);
+}
+
+
+
+// const showRecentSearch = function(){
+//     // Define recent search div
+//     let searchHistory = document.getElementById('searchHistory');
+//     for(let i = 0; i < searchArray.length; i++){
+//         let showSearch = document.createElement('li');
+//         console.log(showSearch);
+//         // showSearch.textContent = searchArray[i];
+//         // showSearch.classList = 'text-muted';
+//         // searchHistory.appendChild(showSearch);
+//     }    
+// }
 
 searchBtn.addEventListener("click", getCity);
