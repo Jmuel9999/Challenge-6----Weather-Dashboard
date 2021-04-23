@@ -9,3 +9,10 @@
   margin-top: 10px;
 }
 
+.col-sm-2 li {
+  width: 100%;
+}
+
+#forecastDaysDiv {
+  padding-left: 0px;
+}
