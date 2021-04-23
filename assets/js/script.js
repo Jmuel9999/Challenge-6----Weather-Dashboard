@@ -31,6 +31,7 @@ const getCity = function() {
 
 // Pulls the information needed for the current weather of the slected city
 const renderWeather = function(param1, param2) {
+    // Passing .then to .then only returns whatever was returned prior
     // Check to see if the parameters pass through to renderWeather properly
     //console.log(param1, param2);
     fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${param1}&lon=${param2}&units=imperial&appid=${openWeatherApiKey}`)      
@@ -42,18 +43,19 @@ const renderWeather = function(param1, param2) {
             fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=minutely,hourly,alerts&appid=${openWeatherApiKey}`)
             .then(res => res.json())
             .then((uvData) => {
-                let cityDate = data.current.dt
+                let cityDate = uvData.timezone;
                 let uvIndex = uvData.current.uvi;
-                //let curWeatherIcon = data.current.weather.icon
+                let curWeatherIcon = uvData.current.weather.id;
+                // Needed to keep these variables with 'data' due to scope of first fetch
                 let curTemp = data.main.temp;
                 let curWind = data.wind.speed;
                 let curHumidity = data.main.humidity;
-                displayCurWeather(curTemp, curWind, curHumidity ,uvIndex, cityDate);
+                displayCurWeather(curTemp, curWind, curHumidity ,uvIndex, curWeatherIcon, cityDate);
             })
         })
 }
 // Displays current weather
-const displayCurWeather = function(temp, wind, humid, uvi, date) {
+const displayCurWeather = function(temp, wind, humid, uvi, curWeatherIcon, date) {
     let title = document.getElementById("title");
     let temperature = document.getElementById("temperature");
     let windspeed = document.getElementById("windspeed");
@@ -62,18 +64,12 @@ const displayCurWeather = function(temp, wind, humid, uvi, date) {
 
     // Appending the conditions to their rightful divs
     title.textContent = date
+    icon.textContent = curWeatherIcon
     temperature.textContent = 'Temp: ' + temp + '°F'
     windspeed.textContent = 'Wind: ' + wind + ' MPH'
     humidity.textContent = 'Humidity: ' + humid + '%'
     // Still need to make the outside change color
     uvI.textContent = 'UV Index: ' + uvi
-    
-    
-    // curWeatherDisplay.textContent = curIcon;
-    // curWeatherDisplay.textContent = temp;
-    // curWeatherDisplay.textContent = wind;
-    // curWeatherDisplay.textContent = humid;
-    // curWeatherDisplay.textContent = uvi;
 }
 
 searchBtn.addEventListener("click", getCity);
