@@ -140,17 +140,22 @@ const saveToLocalStorage = function(){
     }
 }  
 
+// Display recent searches as clickable links
+const showRecentSearch = function(){
+    // Define recent search div
+    let searchHistory = document.getElementById('searchHistory');
+    searchHistory.innerHTML = 'Recent Searches';
+    for(let i = 0; i < searchArray.length; i++){
+        let showSearch = document.createElement('li');
+        // The city searched will be shown from the localStorage
+        showSearch.innerHTML = searchArray[i];
+        // Add styling to the created search history value
+        showSearch.classList = 'd-grid gap-2 col-6 mx-auto';
+        // Attach recent search to specified div to be used for user
+        searchHistory.appendChild(showSearch);
+    }    
+}
 
-// const showRecentSearch = function(){
-//     // Define recent search div
-//     let searchHistory = document.getElementById('searchHistory');
-//     for(let i = 0; i < searchArray.length; i++){
-//         let showSearch = document.createElement('li');
-//         console.log(showSearch);
-//         // showSearch.innerHTML = searchArray[i];
-//         // showSearch.classList = 'text-muted';
-//         // searchHistory.appendChild(showSearch);
-//     }    
-// }
+
 
 searchBtn.addEventListener('click', getCity);
