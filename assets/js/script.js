@@ -12,6 +12,61 @@ const curWeatherDisplay = document.getElementById(`curWeatherDisplay`)
 // Search button variable
 const searchBtn = document.getElementById(`searchBtn`)
 
+// Define variable to save searches to an array
+let searchArray = [];
+
+// Display recent searches as clickable links
+const showRecentSearch = function(){
+    // Define recent search div
+    let searchHistory = document.getElementById('searchHistory');
+    for(let i = 0; i < searchArray.length; i++){
+        // Create a button named after last city that was searched
+        let showSearch = document.createElement('button');
+        // The city searched will be shown in the button
+        showSearch.innerHTML = searchArray[i];
+        // Add styling to the created search history value
+        showSearch.classList = 'btn btn-primary';
+        // Attach recent search to specified div to be used for user
+        searchHistory.appendChild(showSearch);
+    }    
+}
+
+const saveToLocalStorage = function(){
+    // Get value of city typed in by user
+    let searchInput = cityInput.value
+    // Check to see if array has room
+    if(searchArray.length < 5){
+        // Push the search value into the search array
+        searchArray.push(searchInput);
+        // Update localStorage, 'stringify' puts the searches into the searchArray in ['X', 'Y', 'Z'] format
+        localStorage.setItem('City Name', JSON.stringify(searchArray));
+    }
+    // Like saying: if ^ happens, then THIS, 'else if' (otherwise) if (below) happens, THIS
+    else if(searchArray.length >= 5){
+        // Attach value to searchArray, i+1
+        searchArray.push(searchInput);
+        // Drop the first value in array to make room for the new one
+        searchArray.shift();
+        localStorage.setItem('City Name', JSON.stringify(searchArray));
+    }
+}  
+
+const getLocalStorage = function(){
+    // Define variable for getting a recent search from local storage
+    let recentSearch = JSON.parse(localStorage.getItem('City Name'));
+    // If the local storage is empty, show nothing in Recent Searches
+    if (recentSearch !== null && recentSearch !== undefined) {
+        searchArray = recentSearch;
+    // If the local storage has searched City Names, pull the data and show it in Recent Searches
+    } else {
+        localStorage.setItem('City Name', JSON.stringify(searchArray));
+    }
+    showRecentSearch();
+}
+
+// Call any recent searches
+getLocalStorage();
+
 // Fetch function for openweathermap API
 const getCity = function() {
     //showRecentSearch();
@@ -68,8 +123,10 @@ const renderWeather = function(param1, param2) {
                 forecastRow.innerHTML = innerHTMLString;
                 // Save search result to local storage
                 saveToLocalStorage();
+                showRecentSearch();
             })
         })
+        .catch(err => console.error(err));
 }
 
 const showForecast = function(data){
@@ -116,46 +173,5 @@ const displayCurWeather = function(temp, wind, humid, uvi, curWeatherIcon, cityN
     // Still need to make the outside change color
     uvI.textContent = 'UV Index: ' + uvi
 }
-
-// Define variable to save searches to an array
-let searchArray = [];
-
-const saveToLocalStorage = function(){
-    // Get value of city typed in by user
-    let searchInput = cityInput.value
-    // Check to see if array has room
-    if(searchArray.length < 5){
-        // Push the search value into the search array
-        searchArray.push(searchInput);
-        // Update localStorage, 'stringify' puts the searches into the searchArray in ['X', 'Y', 'Z'] format
-        localStorage.setItem('City Name', JSON.stringify(searchArray));
-    }
-    // Like saying: if ^ happens, then THIS, 'else if' (otherwise) if (below) happens, THIS
-    else if(searchArray.length >= 5){
-        // Attach value to searchArray, i+1
-        searchArray.push(searchInput);
-        // Drop the first value in array to make room for the new one
-        searchArray.shift();
-        localStorage.setItem('City Name', JSON.stringify(searchArray));
-    }
-}  
-
-// Display recent searches as clickable links
-const showRecentSearch = function(){
-    // Define recent search div
-    let searchHistory = document.getElementById('searchHistory');
-    searchHistory.innerHTML = 'Recent Searches';
-    for(let i = 0; i < searchArray.length; i++){
-        let showSearch = document.createElement('li');
-        // The city searched will be shown from the localStorage
-        showSearch.innerHTML = searchArray[i];
-        // Add styling to the created search history value
-        showSearch.classList = 'd-grid gap-2 col-6 mx-auto';
-        // Attach recent search to specified div to be used for user
-        searchHistory.appendChild(showSearch);
-    }    
-}
-
-
 
 searchBtn.addEventListener('click', getCity);
