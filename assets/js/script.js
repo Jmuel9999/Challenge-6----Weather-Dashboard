@@ -17,8 +17,7 @@ const searchBtn = document.getElementById(`searchBtn`)
 
 // Fetch function for openweathermap API
 const getCity = function() {
-    storeSearchLocal();
-    showRecentSearch();
+    //showRecentSearch();
     //debugger;
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInput.value}&units=imperial&limit=1&appid=${openWeatherApiKey}`)
         .then(response => response.json())
@@ -48,8 +47,10 @@ const renderWeather = function(param1, param2) {
             fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${openWeatherApiKey}`)
             .then(res => res.json())
             .then((uvData) => {
+                
                 // Get date for forecast days
-                let firstDay = uvData.daily[0].dt
+                // Tunred this into a dayjs object
+                let firstDay = dayjs.unix(uvData.daily[0].dt).format('MMM D, YYYY')
                 // Weather conditions for first forecast card
                 let firstDayTemp = uvData.daily[0].temp.max;
                 let firstDayWind = uvData.daily[0].wind_speed;
@@ -91,14 +92,51 @@ const renderWeather = function(param1, param2) {
                 let curWind = data.wind.speed;
                 let curHumidity = data.main.humidity;
                 displayCurWeather(curTemp, curWind, curHumidity ,uvIndex, curWeatherIcon, cityName);
-                displayForecastOne(firstDay, firstDayTemp, firstDayWind, firstDayHumidity);
-                displayForecastTwo(secondDay, secondDayTemp, secondDayWind, secondDayHumidity);
-                displayForecastThree(thirdDay, thirdDayTemp, thirdDayWind, thirdDayHumidity);
-                displayForecastFour(fourthDay, fourthDayTemp, fourthDayWind, fourthDayHumidity);
-                displayForecastFive(fifthDay, fifthDayTemp, fifthDayWind, fifthDayHumidity);
+                // displayForecastOne(firstDay, firstDayTemp, firstDayWind, firstDayHumidity);
+                // displayForecastTwo(secondDay, secondDayTemp, secondDayWind, secondDayHumidity);
+                // displayForecastThree(thirdDay, thirdDayTemp, thirdDayWind, thirdDayHumidity);
+                // displayForecastFour(fourthDay, fourthDayTemp, fourthDayWind, fourthDayHumidity);
+                // displayForecastFive(fifthDay, fifthDayTemp, fifthDayWind, fifthDayHumidity);
+                // Create cards dynamically
+                let innerHTMLString = ``;
+                let forecastRow = document.getElementById(`forecast-row`);
+                for(let i = 0; i < 5; i++){
+                    // Create card HTML
+                    innerHTMLString = innerHTMLString + createForecastCard(showForecast(uvData.daily[i]));
+                }
+                forecastRow.innerHTML = innerHTMLString;
+                // Save search result to local storage
+                saveToLocalStorage();
             })
         })
 }
+
+const showForecast = function(data){
+    return{
+        //key              value pairs
+        cardDate: dayjs.unix(data.dt).format('MMM D, YYYY'),
+        temperature: data.temp.max,
+        windspeed: data.wind_speed,
+        humidity: data.humidity
+    }
+    // Need dt need .temp.max need .wind_speed need .humidity
+}
+
+const createForecastCard = function(dataObj){
+    // Deconstruct object
+    const {cardDate, temperature, windspeed, humidity} = dataObj
+    return `
+    <div class="col-sm-2">
+        <div class="card-header">${cardDate}</div>
+        <ul>
+            <li class="list-group-item icon"></li>
+            <li class="list-group-item">Temp: ${temperature} °F</li>
+            <li class="list-group-item">Wind: ${windspeed} MPH</li>
+            <li class="list-group-item">Humidity: ${humidity}%</li>
+        </ul>
+    </div> `
+}
+
 // Displays current weather
 const displayCurWeather = function(temp, wind, humid, uvi, curWeatherIcon, cityName) {
     let icon = document.getElementById("icon");
@@ -198,10 +236,11 @@ const displayForecastFive = function(fifthDay, fifthDayTemp, fifthDayWind, fifth
     dayFiveHumidity.textContent = 'Humidity: ' + fifthDayHumidity + '%'; 
 }
 
-const storeSearchLocal = function(){
+const saveToLocalStorage = function(){
     // Get value of city typed in by user
     let searchInput = cityInput.value
-    //console.log(storeSearchLocal);
+    localStorage.setItem(searchInput);
+    //console.log()
 }
 
 
@@ -212,7 +251,7 @@ const storeSearchLocal = function(){
 //     for(let i = 0; i < searchArray.length; i++){
 //         let showSearch = document.createElement('li');
 //         console.log(showSearch);
-//         // showSearch.textContent = searchArray[i];
+//         // showSearch.innerHTML = searchArray[i];
 //         // showSearch.classList = 'text-muted';
 //         // searchHistory.appendChild(showSearch);
 //     }    
