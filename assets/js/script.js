@@ -69,8 +69,6 @@ getLocalStorage();
 
 // Fetch function for openweathermap API
 const getCity = function() {
-    //showRecentSearch();
-    //debugger;
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInput.value}&units=imperial&limit=1&appid=${openWeatherApiKey}`)
         .then(response => response.json())
         .then((data) => {
