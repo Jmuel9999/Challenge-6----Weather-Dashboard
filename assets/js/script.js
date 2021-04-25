@@ -1,16 +1,17 @@
 
 // Important variables to note:
-const openWeatherApiKey = `643d2bf23896d3c3a3c726330b6ea84c`
+const openWeatherApiKey = `643d2bf23896d3c3a3c726330b6ea84c`;
 
 // Various function variables
 //const curWeatherDiv = document.getElementById(`currentCityDiv`)
-const forecastDaysDiv = document.getElementById(`forecastDaysDiv`)
-const selectedCity = document.getElementById(`selectedCity`)
-const cityInput = document.getElementById(`cityInput`)
-const curWeatherDisplay = document.getElementById(`curWeatherDisplay`)
+const forecastDaysDiv = document.getElementById(`forecastDaysDiv`);
+const selectedCity = document.getElementById(`selectedCity`);
+const cityInput = document.getElementById(`cityInput`);
+const curWeatherDisplay = document.getElementById(`curWeatherDisplay`);
+const recentSearchBtns = document.querySelector(`#recentSearchButtons`);
 
 // Search button variable
-const searchBtn = document.getElementById(`searchBtn`)
+const searchBtn = document.getElementById(`searchBtn`);
 
 // Define variable to save searches to an array
 let searchArray = [];
@@ -19,6 +20,8 @@ let searchArray = [];
 const showRecentSearch = function(){
     // Define recent search div
     let searchHistory = document.getElementById('searchHistory');
+    // Clear the innerHTML between searches to only add the most recent search to the array
+    searchHistory.innerHTML = '';
     for(let i = 0; i < searchArray.length; i++){
         // Create a button named after last city that was searched
         let showSearch = document.createElement('button');
@@ -28,6 +31,9 @@ const showRecentSearch = function(){
         showSearch.classList = 'btn btn-primary';
         // Attach recent search to specified div to be used for user
         searchHistory.appendChild(showSearch);
+        // showSearch.onclick = function(){
+        //     getCity();
+        // }
     }    
 }
 
