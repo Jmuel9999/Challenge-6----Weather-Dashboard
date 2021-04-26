@@ -7,6 +7,9 @@ A web app that allows you to search for a city and check the weather for the cur
 * HTML
 * CSS
 * JavaScript
+* API's used:
+  - openweathermap.org
+  - day.js.org
 
 ## Website
 https://jmuel9999.github.io/Challenge-6--Weather-Dashboard/
