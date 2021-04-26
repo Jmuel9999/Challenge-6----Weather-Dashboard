@@ -16,3 +16,13 @@
 #forecastDaysDiv {
   padding-left: 0px;
 }
+
+/* Search history div alignment correction */
+#searchHistory {
+  padding-left: 0px;
+}
+
+/* Put space beneath buttons */
+#newBtns {
+  margin-bottom: 10px;
+}

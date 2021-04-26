@@ -25,6 +25,8 @@ const showRecentSearch = function(){
     for(let i = 0; i < searchArray.length; i++){
         // Create a button named after last city that was searched
         let showSearch = document.createElement('button');
+        // Create ID for the new buttons
+        showSearch.setAttribute('id', 'newBtns')
         // The city searched will be shown in the button
         showSearch.innerHTML = searchArray[i];
         // Add styling to the created search history value
