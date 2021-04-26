@@ -9,6 +9,6 @@ A web app that allows you to search for a city and check the weather for the cur
 * JavaScript
 
 ## Website
-
+https://jmuel9999.github.io/Challenge-6--Weather-Dashboard/
 
 ## Screenshot
