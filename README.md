@@ -12,4 +12,4 @@ A web app that allows you to search for a city and check the weather for the cur
 https://jmuel9999.github.io/Challenge-6--Weather-Dashboard/
 
 ## Screenshot
-![Full website screenshot]!(./assets/images/screenshot6.png)
+![Full website screenshot](./assets/images/screenshot6.png)
